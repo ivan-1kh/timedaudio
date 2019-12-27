@@ -2,12 +2,18 @@
 <head>
   <title>dv/index/appcode</title>
 </head>
-<body>
-<script>
-window.setInterval(function onclick(){
-var audio = new Audio('sound.mp3');
-audio.play();
-}, 1800000)
-</script>
+<body style="text-align: center;">
+    <input style="margin-top: 10%;" id="input" /><br />
+    <button style="margin-top: 2%;" id="btn" onclick="btnclick()">Confirm</button>
+    <script>
+        var interval = null;
+        function btnclick() {
+            window.clearInterval(interval);
+            document.getElementById('input').value = (60000 * parseInt(document.getElementById('input').value)).toString();
+            interval = window.setInterval(function fn() {
+                (new Audio('sound.mp3')).play();
+            }, parseInt(document.getElementById('input').value) < 1 ? 1 : parseInt(document.getElementById('input').value));
+        }
+    </script>
 </body>
 </html>
